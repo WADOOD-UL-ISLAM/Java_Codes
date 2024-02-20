@@ -1,0 +1,102 @@
+ private static class Entry {
+        String name;
+        String id;
+
+        Entry(String name, String id) {
+            this.name = name;
+            this.id = id;
+      }
+  }
+public class CustomArraylist {
+
+    private int size;
+    private int count;
+    private Entry[] entries;
+
+    public CustomArraylist(int initialCapacity) {
+        this.size = initialCapacity;
+        this.count = 0;
+        this.entries = new Entry[initialCapacity];
+    }
+
+    public void addEntry(String name, String id) {
+        checkCapacity();
+        entries[count++] = new Entry(name, id);
+    }
+
+    public void searchByName(String name) {
+        for (int i = 0; i < count; i++) {
+            if (entries[i].name.equals(name)) {
+                System.out.println("Found at index " + i);
+                return;
+            }
+        }
+        System.out.println("Entry with the specified name not found.");
+    }
+
+    public void searchById(String id) {
+        for (int i = 0; i < count; i++) {
+            if (entries[i].id.equals(id)) {
+                System.out.println("Found at index " + i);
+                return;
+            }
+        }
+        System.out.println("Entry with the specified phone number not found.");
+    }
+
+    public void deleteById(String id) {
+        for (int i = 0; i < count; i++) {
+            if (entries[i].id.equals(id)) {
+                removeEntryAtIndex(i);
+                return;
+            }
+        }
+        System.out.println("Entry with the specified phone number not found.");
+    }
+
+    public void deleteByName(String name) {
+        for (int i = 0; i < count; i++) {
+            if (entries[i].name.equals(name)) {
+                removeEntryAtIndex(i);
+                return;
+            }
+        }
+        System.out.println("Entry with the specified name not found.");
+    }
+
+    public void updateByPhno(String id, String newName, String newid) {
+        for (int i = 0; i < count; i++) {
+            if (entries[i].id.equals(id)) {
+                entries[i].name = newName;
+                entries[i].id = newid;
+                System.out.println("Entry updated successfully.");
+                return;
+            }
+        }
+        System.out.println("Entry with the specified phone number not found.");
+    }
+
+    public void printEntries() {
+        for (int i = 0; i < count; i++) {
+            System.out.println("-----" + (i + 1) + "----");
+            System.out.println("Name: " + entries[i].name);
+            System.out.println("Phone Number: " + entries[i].id);
+        }
+    }
+
+    private void checkCapacity() {
+        if (count == size) {
+            size *= 2;
+            Entry[] newArr = new Entry[size];
+            System.arraycopy(entries, 0, newArr, 0, count);
+            entries = newArr;
+        }
+    }
+
+    private void removeEntryAtIndex(int index) {
+        for (int i = index; i < count - 1; i++) {
+            entries[i] = entries[i + 1];
+        }
+        count--;
+    }
+}
