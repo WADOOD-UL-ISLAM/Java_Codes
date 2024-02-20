@@ -41,7 +41,7 @@ public class CustomArraylist {
                 return;
             }
         }
-        System.out.println("Entry with the specified phone number not found.");
+        System.out.println("Entry with the specified id number not found.");
     }
 
     public void deleteById(String id) {
@@ -51,7 +51,7 @@ public class CustomArraylist {
                 return;
             }
         }
-        System.out.println("Entry with the specified phone number not found.");
+        System.out.println("Entry with the specified id number not found.");
     }
 
     public void deleteByName(String name) {
@@ -73,7 +73,7 @@ public class CustomArraylist {
                 return;
             }
         }
-        System.out.println("Entry with the specified phone number not found.");
+        System.out.println("Entry with the specified id number not found.");
     }
 
     public void printEntries() {
